@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Event form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="http://localhost:8081/">MyCalendar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Calendar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-right" href="/events">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-right" href="/goals">Goals</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-right" href="/notes">Notes</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+<form class="container" method="POST" th:action="@{'/events/{id}/{id2}' (id=${eventF?.getId()})}">
+    <div class="mt-2">
+        <h2 class="d-flex align-items-center justify-content-center">Event</h2>
+        <input type="text"
+               id="name"
+               class="form-control mt-2"
+               name="name"
+               placeholder="Name"
+               th:value="${eventF?.name}"
+               required>
+    </div>
+    <div class="mt-2">
+        <input type="text"
+               id="description"
+               class="form-control mt-2"
+               name="description"
+               placeholder="Description"
+               th:value="${eventF?.description}"
+               required>
+    </div>
+    <div class="mt-2">
+        <input type="text"
+               id="price"
+               class="form-control mt-2"
+               name="time"
+               placeholder="Event time ex.2015-08-04T10:11:30"
+               th:value="${eventF?.time}"
+               required>
+    </div>
+    <div>
+        <label class="mt-2"><b>Priority</b></label><br/>
+        <select class="form-select" id="priority" name="priority">
+            <!-- For each type you should have one <option> like below  -->
+            <option th:each="priority : ${priorities}" th:value="${priority}" th:text="${priority.toString()}"> [priority.name]</option>
+        </select>
+    </div>
+    <div>
+        <label class="mt-2"><b>Event category</b></label><br/>
+        <select class="form-select" id="category" name="category">
+            <!-- For each location you should have one <option> like below  -->
+            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"
+                    value="[category.id]"> [category.name]</option>
+        </select>
+    </div>
+    <div>
+    <button class="btn btn-primary mt-2" id="submit" type="submit">Submit</button>
+    </div>
+    <div>
+    <a id="back" href="/events" type="button" class="btn btn-primary mt-2">Back to events</a>
+    </div>
+</form>
+
+<!--<div class="container d-flex text-right">-->
+<!--    <ul id="nav">-->
+<!--        <li><a href="/">Home</a></li>-->
+<!--        <li><a href="/login">Login</a></li>-->
+<!--        <li><a href="/logout">Logout</a></li>-->
+<!--    </ul>-->
+<!--</div>-->
+</body>
+</html>
