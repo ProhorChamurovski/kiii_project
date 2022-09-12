@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Note form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="http://localhost:8081/">MyCalendar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Calendar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-right" href="/events">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-right" href="/goals">Goals</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-right" href="/notes">Notes</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<form class="container" method="POST" th:action="@{'/notes/{id}' (id=${note?.getId()})}">
+    <div class="mt-2">
+        <h2 class="d-flex align-items-center justify-content-center">Note</h2>
+        <input type="text"
+               id="title"
+               class="form-control mt-2"
+               name="title"
+               placeholder="Title"
+               th:value="${note?.title}"
+               required>
+    </div>
+    <div class="mt-2">
+        <input type="text"
+               id="content"
+               class="form-control mt-2"
+               name="content"
+               placeholder="Content"
+               th:value="${note?.content}"
+               required>
+    </div>
+    <div>
+        <button class="btn btn-primary mt-2" id="submit" type="submit">Submit</button>
+    </div>
+    <div>
+        <a id="back" href="/notes" type="button" class="btn btn-primary mt-2">Back to personal notes</a>
+    </div>
+</form>
+
+</body>
+</html>
