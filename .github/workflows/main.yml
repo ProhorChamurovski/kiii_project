@@ -33,7 +33,7 @@ jobs:
         run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       
       - name: Build Docker Image
-        run: docker build . --file calendar-wp-project/Dockerfile --tag ProhorChamurovski/kiii_project:latest
+        run: docker build . --file calendar-wp-project/Dockerfile --tag prohorcha1/kiii_project:latest
         
       - name: Docker Push Image
         run: docker push ${{secrets.DOCKER_USERNAME}}/kiii_project
