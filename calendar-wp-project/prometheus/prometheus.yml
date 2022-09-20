@@ -11,5 +11,5 @@ scrape_configs:
     static_configs:
       - targets:
           - 'prometheus:9090'
-          - 'calendar:8081'
+          - 'calendar:8082'
 
